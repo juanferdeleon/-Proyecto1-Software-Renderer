@@ -210,21 +210,21 @@ class Bitmap(object):
         self.glClear()
 
     def glClear(self):
-    '''Set all pixels to same color'''
+        '''Set all pixels to same color'''
 
-    self.framebuffer = [
-        [
-            self.clear_color for x in range(self.width)
-            ]
-        for y in range(self.height)
-    ]
+        self.framebuffer = [
+            [
+                self.clear_color for x in range(self.width)
+                ]
+            for y in range(self.height)
+        ]
 
-    self.zbuffer = [
-        [
-            -1*float('inf') for x in range(self.width)
-            ]
-        for y in range(self.height)
-    ]
+        self.zbuffer = [
+            [
+                -1*float('inf') for x in range(self.width)
+                ]
+            for y in range(self.height)
+        ]
 
     def glClearColor(self, r, g, b):
         '''Can change the color of glClear(), parameters must be numbers in the 
@@ -1292,11 +1292,11 @@ class Bitmap(object):
                 elif mtl:
                     material2 = face[3]
                     valorcito = model.material[material2]
-                    self.triangle(a,b,c,luz,color = glColor(valorcito[0]*intensity,valorcito[1]*intensity, valorcito[2]*intensity),normals_coords = (nA, nC, nB),colores=(valorcito[0],valorcito[1],valorcito[2]),shaderr=shader,normalMap = mapping)
+                    self.triangle(a,b,c,light,color = self.glColor(valorcito[0]*intensity,valorcito[1]*intensity, valorcito[2]*intensity),normals_coords = (nA, nC, nB),colors=(valorcito[0],valorcito[1],valorcito[2]),shaderr=shader,normalMap = mapping)
 
                 else:
                     self.glColor(intensity, intensity, intensity)
-                    self.triangle(a,b,c,luz,color = glColor(intensity, intensity, intensity), normals_coords = (nA, nC, nB))|
+                    self.triangle(a,b,c,light,color = self.glColor(intensity, intensity, intensity), normals_coords = (nA, nC, nB))
     
     def loadModelMatrix(self, translate=(0,0,0),scale=(1,1,1),rotate=(0,0,0)):
         translate_matrix = [
